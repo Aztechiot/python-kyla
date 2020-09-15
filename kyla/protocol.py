@@ -1,10 +1,6 @@
-"""Implementation of the TP-Link Smart Home Protocol.
+"""Implementation of the Aztech Smart Home Protocol.
 
-Encryption/Decryption methods based on the works of
-Lubomir Stroetmann and Tobias Esser
 
-https://www.softscheck.com/en/reverse-engineering-tp-link-hs110/
-https://github.com/softScheck/tplink-smartplug/
 
 which are licensed under the Apache License, Version 2.0
 http://www.apache.org/licenses/LICENSE-2.0
@@ -21,8 +17,8 @@ from .exceptions import SmartDeviceException
 _LOGGER = logging.getLogger(__name__)
 
 
-class TPLinkSmartHomeProtocol:
-    """Implementation of the TP-Link Smart Home protocol."""
+class AztechSmartHomeProtocol:
+    """Implementation of the Aztech Smart Home protocol."""
 
     INITIALIZATION_VECTOR = 171
     DEFAULT_PORT = 9999
@@ -30,7 +26,7 @@ class TPLinkSmartHomeProtocol:
 
     @staticmethod
     async def query(host: str, request: Union[str, Dict], retry_count: int = 3) -> Dict:
-        """Request information from a TP-Link SmartHome Device.
+        """Request information from a Aztech SmartHome Device.
 
         :param str host: host name or ip address of the device
         :param request: command to send to the device (can be either dict or
@@ -41,16 +37,16 @@ class TPLinkSmartHomeProtocol:
         if isinstance(request, dict):
             request = json.dumps(request)
 
-        timeout = TPLinkSmartHomeProtocol.DEFAULT_TIMEOUT
+        timeout = AztechSmartHomeProtocol.DEFAULT_TIMEOUT
         writer = None
         for retry in range(retry_count + 1):
             try:
                 task = asyncio.open_connection(
-                    host, TPLinkSmartHomeProtocol.DEFAULT_PORT
+                    host, AztechSmartHomeProtocol.DEFAULT_PORT
                 )
                 reader, writer = await asyncio.wait_for(task, timeout=timeout)
                 _LOGGER.debug("> (%i) %s", len(request), request)
-                writer.write(TPLinkSmartHomeProtocol.encrypt(request))
+                writer.write(AztechSmartHomeProtocol.encrypt(request))
                 await writer.drain()
 
                 buffer = bytes()
@@ -66,7 +62,7 @@ class TPLinkSmartHomeProtocol:
                     if (length > 0 and len(buffer) >= length + 4) or not chunk:
                         break
 
-                response = TPLinkSmartHomeProtocol.decrypt(buffer[4:])
+                response = AztechSmartHomeProtocol.decrypt(buffer[4:])
                 json_payload = json.loads(response)
                 _LOGGER.debug("< (%i) %s", len(response), pf(json_payload))
 
@@ -91,12 +87,12 @@ class TPLinkSmartHomeProtocol:
 
     @staticmethod
     def encrypt(request: str) -> bytes:
-        """Encrypt a request for a TP-Link Smart Home Device.
+        """Encrypt a request for a Aztech Smart Home Device.
 
         :param request: plaintext request data
         :return: ciphertext to be send over wire, in bytes
         """
-        key = TPLinkSmartHomeProtocol.INITIALIZATION_VECTOR
+        key = AztechSmartHomeProtocol.INITIALIZATION_VECTOR
 
         plainbytes = request.encode()
         buffer = bytearray(struct.pack(">I", len(plainbytes)))
@@ -110,12 +106,12 @@ class TPLinkSmartHomeProtocol:
 
     @staticmethod
     def decrypt(ciphertext: bytes) -> str:
-        """Decrypt a response of a TP-Link Smart Home Device.
+        """Decrypt a response of a Aztech Smart Home Device.
 
         :param ciphertext: encrypted response data
         :return: plaintext response
         """
-        key = TPLinkSmartHomeProtocol.INITIALIZATION_VECTOR
+        key = AztechSmartHomeProtocol.INITIALIZATION_VECTOR
         buffer = []
 
         for cipherbyte in ciphertext:

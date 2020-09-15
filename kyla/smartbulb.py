@@ -9,7 +9,7 @@ from kyla.smartdevice import (
     requires_update,
 )
 
-TPLINK_KELVIN = {
+AZTECH_KELVIN = {
     "LB130": (2500, 9000),
     "LB120": (2700, 6500),
     "LB230": (2500, 9000),
@@ -22,7 +22,7 @@ TPLINK_KELVIN = {
 
 
 class SmartBulb(SmartDevice):
-    """Representation of a TP-Link Smart Bulb.
+    """Representation of a Aztech Smart Bulb.
 
     To initialize, you have to await :func:`update()` at least once.
     This will allow accessing the properties using the exposed properties.
@@ -127,7 +127,7 @@ class SmartBulb(SmartDevice):
         """
         if not self.is_variable_color_temp:
             raise SmartDeviceException("Color temperature not supported")
-        for model, temp_range in TPLINK_KELVIN.items():
+        for model, temp_range in AZTECH_KELVIN.items():
             sys_info = self.sys_info
             if re.match(model, sys_info["model"]):
                 return temp_range

@@ -1,12 +1,6 @@
-"""Python library supporting TP-Link Smart Home devices.
+"""Python library supporting Aztech Smart Home devices.
 
-The communication protocol was reverse engineered by Lubomir Stroetmann and
-Tobias Esser in 'Reverse Engineering the TP-Link HS110':
-https://www.softscheck.com/en/reverse-engineering-tp-link-hs110/
 
-This library reuses codes and concepts of the TP-Link WiFi SmartPlug Client
-at https://github.com/softScheck/tplink-smartplug, developed by Lubomir
-Stroetmann which is licensed under the Apache License, Version 2.0.
 
 You may obtain a copy of the license at
 http://www.apache.org/licenses/LICENSE-2.0
@@ -20,7 +14,7 @@ from enum import Enum
 from typing import Any, Dict, List, Optional
 
 from .exceptions import SmartDeviceException
-from .protocol import TPLinkSmartHomeProtocol
+from .protocol import AztechSmartHomeProtocol
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -220,7 +214,7 @@ class SmartDevice:
         """
         self.host = host
 
-        self.protocol = TPLinkSmartHomeProtocol()
+        self.protocol = AztechSmartHomeProtocol()
         self.emeter_type = "emeter"
         _LOGGER.debug("Initializing %s of type %s", self.host, type(self))
         self._device_type = DeviceType.Unknown

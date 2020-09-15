@@ -1,4 +1,4 @@
-"""Module for multi-socket devices (HS300, HS107, KP303, ..)."""
+"""Module for multi-socket devices."""
 import logging
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -16,7 +16,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class SmartStrip(SmartDevice):
-    """Representation of a TP-Link Smart Power Strip.
+    """Representation of a Aztech Smart Power Strip.
 
     A strip consists of the parent device and its children.
     All methods of the parent act on all children, while the child devices
@@ -36,7 +36,7 @@ class SmartStrip(SmartDevice):
         >>> strip = SmartStrip("127.0.0.1")
         >>> asyncio.run(strip.update())
         >>> strip.alias
-        TP-LINK_Power Strip_CF69
+        AZTECH_Power Strip_CF69
 
         All methods act on the whole strip:
 

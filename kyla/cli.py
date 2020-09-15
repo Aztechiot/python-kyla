@@ -49,7 +49,7 @@ pass_dev = click.make_pass_decorator(SmartDevice)
 @click.version_option()
 @click.pass_context
 async def cli(ctx, host, alias, target, debug, bulb, plug, lightstrip, strip):
-    """A tool for controlling TP-Link smart home devices."""  # noqa
+    """A tool for controlling Aztech smart home devices."""  # noqa
     if debug:
         logging.basicConfig(level=logging.DEBUG)
     else:

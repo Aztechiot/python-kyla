@@ -12,7 +12,7 @@ from voluptuous import (  # type: ignore
     Schema,
 )
 
-from ..protocol import TPLinkSmartHomeProtocol
+from ..protocol import AztechSmartHomeProtocol
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -104,7 +104,7 @@ PLUG_SCHEMA = Schema(
         "next_action": {"type": int},
         "child_num": Optional(Any(None, int)),  # TODO fix hs300 checks
         "children": Optional(list),  # TODO fix hs300
-        # TODO some tplink simulator entries contain invalid (mic_mac, _i variants for lat/lon)
+        # TODO some aztech simulator entries contain invalid (mic_mac, _i variants for lat/lon)
         # Therefore we add REMOVE_EXTRA..
         # "INVALIDmac": Optional,
         # "INVALIDlatitude": Optional,
@@ -252,7 +252,7 @@ def success(res):
     return res
 
 
-class FakeTransportProtocol(TPLinkSmartHomeProtocol):
+class FakeTransportProtocol(AztechSmartHomeProtocol):
     def __init__(self, info):
         self.discovery_data = info
         proto = FakeTransportProtocol.baseproto

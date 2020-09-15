@@ -16,8 +16,8 @@ def test_bulb_examples(mocker):
 
 
 def test_smartdevice_examples(mocker):
-    """Use HS110 for emeter examples."""
-    p = get_device_for_file("HS110(EU)_1.0_real.json")
+    """Use Kyla for emeter examples."""
+    p = get_device_for_file("Kyla Gen 2 Smart Plug.json")
     mocker.patch("kyla.smartdevice.SmartDevice", return_value=p)
     mocker.patch("kyla.smartdevice.SmartDevice.update")
     res = xdoctest.doctest_module("kyla.smartdevice", "all")
@@ -26,7 +26,7 @@ def test_smartdevice_examples(mocker):
 
 def test_plug_examples(mocker):
     """Test plug examples."""
-    p = get_device_for_file("HS110(EU)_1.0_real.json")
+    p = get_device_for_file("Kyla Gen 2 Smart Plug.json")
     mocker.patch("kyla.smartplug.SmartPlug", return_value=p)
     mocker.patch("kyla.smartplug.SmartPlug.update")
     res = xdoctest.doctest_module("kyla.smartplug", "all")
@@ -35,7 +35,7 @@ def test_plug_examples(mocker):
 
 def test_strip_examples(mocker):
     """Test strip examples."""
-    p = get_device_for_file("KP303(UK)_1.0.json")
+    p = get_device_for_file("Kyla Gen 2 Smart Plug.json")
     mocker.patch("kyla.smartstrip.SmartStrip", return_value=p)
     mocker.patch("kyla.smartstrip.SmartStrip.update")
     res = xdoctest.doctest_module("kyla.smartstrip", "all")
@@ -44,7 +44,7 @@ def test_strip_examples(mocker):
 
 def test_dimmer_examples(mocker):
     """Test dimmer examples."""
-    p = get_device_for_file("HS220(US)_1.0_real.json")
+    p = get_device_for_file("Kyla Gen 2 Smart Plug.json")
     mocker.patch("kyla.smartdimmer.SmartDimmer", return_value=p)
     mocker.patch("kyla.smartdimmer.SmartDimmer.update")
     res = xdoctest.doctest_module("kyla.smartdimmer", "all")
@@ -53,7 +53,7 @@ def test_dimmer_examples(mocker):
 
 def test_lightstrip_examples(mocker):
     """Test lightstrip examples."""
-    p = get_device_for_file("KL430(US)_1.0.json")
+    p = get_device_for_file("Kyla Gen 2 Smart Plug.json")
     mocker.patch("kyla.smartlightstrip.SmartLightStrip", return_value=p)
     mocker.patch("kyla.smartlightstrip.SmartLightStrip.update")
     res = xdoctest.doctest_module("kyla.smartlightstrip", "all")
@@ -65,7 +65,7 @@ def test_lightstrip_examples(mocker):
 )
 def test_discovery_examples(mocker):
     """Test discovery examples."""
-    p = get_device_for_file("KP303(UK)_1.0.json")
+    p = get_device_for_file("Kyla Gen 2 Smart Plug.json")
 
     # This succeeds on python 3.8 but fails on 3.7
     # ValueError: a coroutine was expected, got [<DeviceType.Strip model KP303(UK) ...

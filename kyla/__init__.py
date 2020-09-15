@@ -1,4 +1,4 @@
-"""Python interface for TP-Link's smart home devices.
+"""Python interface for Aztech's smart home devices.
 
 All common, shared functionalities are available through `SmartDevice` class::
 
@@ -14,7 +14,7 @@ to be handled by the user of the library.
 from importlib_metadata import version  # type: ignore
 from kyla.discover import Discover
 from kyla.exceptions import SmartDeviceException
-from kyla.protocol import TPLinkSmartHomeProtocol
+from kyla.protocol import AztechSmartHomeProtocol
 from kyla.smartbulb import SmartBulb
 from kyla.smartdevice import DeviceType, EmeterStatus, SmartDevice
 from kyla.smartdimmer import SmartDimmer
@@ -27,7 +27,7 @@ __version__ = version("python-kyla")
 
 __all__ = [
     "Discover",
-    "TPLinkSmartHomeProtocol",
+    "AztechSmartHomeProtocol",
     "SmartBulb",
     "DeviceType",
     "EmeterStatus",

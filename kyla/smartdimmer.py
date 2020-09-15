@@ -1,4 +1,4 @@
-"""Module for dimmers (currently only HS220)."""
+"""Module for dimmers."""
 from typing import Any, Dict
 
 from kyla.smartdevice import DeviceType, SmartDeviceException, requires_update
@@ -6,7 +6,7 @@ from kyla.smartplug import SmartPlug
 
 
 class SmartDimmer(SmartPlug):
-    """Representation of a TP-Link Smart Dimmer.
+    """Representation of a Aztech Smart Dimmer.
 
     Dimmers work similarly to plugs, but provide also support for
     adjusting the brightness. This class extends :class:`SmartPlug` interface.

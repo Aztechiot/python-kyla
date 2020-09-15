@@ -88,7 +88,7 @@ async def test_emeter_status(dev):
         assert d["foo"]
 
     assert d["power_mw"] == d["power"] * 1000
-    # bulbs have only power according to tplink simulator.
+    # bulbs have only power according to aztech simulator.
     if not dev.is_bulb:
         assert d["voltage_mv"] == d["voltage"] * 1000
 

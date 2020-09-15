@@ -3,7 +3,7 @@ import json
 import pytest
 
 from ..exceptions import SmartDeviceException
-from ..protocol import TPLinkSmartHomeProtocol
+from ..protocol import AztechSmartHomeProtocol
 from .conftest import pytestmark
 
 
@@ -21,17 +21,17 @@ async def test_protocol_retries(mocker, retry_count):
 
     conn = mocker.patch("asyncio.open_connection", side_effect=aio_mock_writer)
     with pytest.raises(SmartDeviceException):
-        await TPLinkSmartHomeProtocol.query("127.0.0.1", {}, retry_count=retry_count)
+        await AztechSmartHomeProtocol.query("127.0.0.1", {}, retry_count=retry_count)
 
     assert conn.call_count == retry_count + 1
 
 
 def test_encrypt():
     d = json.dumps({"foo": 1, "bar": 2})
-    encrypted = TPLinkSmartHomeProtocol.encrypt(d)
+    encrypted = AztechSmartHomeProtocol.encrypt(d)
     # encrypt adds a 4 byte header
     encrypted = encrypted[4:]
-    assert d == TPLinkSmartHomeProtocol.decrypt(encrypted)
+    assert d == AztechSmartHomeProtocol.decrypt(encrypted)
 
 
 def test_encrypt_unicode():
@@ -60,7 +60,7 @@ def test_encrypt_unicode():
         ]
     )
 
-    encrypted = TPLinkSmartHomeProtocol.encrypt(d)
+    encrypted = AztechSmartHomeProtocol.encrypt(d)
     # encrypt adds a 4 byte header
     encrypted = encrypted[4:]
 
@@ -93,4 +93,4 @@ def test_decrypt_unicode():
 
     d = "{'snowman': '\u2603'}"
 
-    assert d == TPLinkSmartHomeProtocol.decrypt(e)
+    assert d == AztechSmartHomeProtocol.decrypt(e)

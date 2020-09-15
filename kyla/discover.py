@@ -1,11 +1,11 @@
-"""Discovery module for TP-Link Smart Home devices."""
+"""Discovery module for Aztech Smart Home devices."""
 import asyncio
 import json
 import logging
 import socket
 from typing import Awaitable, Callable, Dict, Mapping, Optional, Type, Union, cast
 
-from kyla.protocol import TPLinkSmartHomeProtocol
+from kyla.protocol import AztechSmartHomeProtocol
 from kyla.smartbulb import SmartBulb
 from kyla.smartdevice import SmartDevice, SmartDeviceException
 from kyla.smartdimmer import SmartDimmer
@@ -42,7 +42,7 @@ class _DiscoverProtocol(asyncio.DatagramProtocol):
         self.timeout = timeout
         self.interface = interface
         self.on_discovered = on_discovered
-        self.protocol = TPLinkSmartHomeProtocol()
+        self.protocol = AztechSmartHomeProtocol()
         self.target = (target, Discover.DISCOVERY_PORT)
         self.discovered_devices = {}
         self.discovered_devices_raw = {}
@@ -99,7 +99,7 @@ class _DiscoverProtocol(asyncio.DatagramProtocol):
 
 
 class Discover:
-    """Discover TPLink Smart Home devices.
+    """Discover Aztech Smart Home devices.
 
     The main entry point for this library is :func:`Discover.discover()`,
     which returns a dictionary of the found devices. The key is the IP address
@@ -118,7 +118,7 @@ class Discover:
         >>> import asyncio
         >>> found_devices = asyncio.run(Discover.discover())
         >>> [dev.alias for dev in found_devices]
-        ['TP-LINK_Power Strip_CF69']
+        ['AZTECH_Power Strip_CF69']
 
         Discovery can also be targeted to a specific broadcast address instead of the 255.255.255.255:
 
@@ -205,7 +205,7 @@ class Discover:
         :rtype: SmartDevice
         :return: Object for querying/controlling found device.
         """
-        protocol = TPLinkSmartHomeProtocol()
+        protocol = AztechSmartHomeProtocol()
 
         info = await protocol.query(host, Discover.DISCOVERY_QUERY)
 

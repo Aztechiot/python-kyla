@@ -1,4 +1,4 @@
-"""Module for smart plugs (HS100, HS110, ..)."""
+"""Module for smart plugs."""
 import logging
 from typing import Any, Dict
 

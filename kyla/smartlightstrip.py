@@ -6,7 +6,7 @@ from .smartdevice import DeviceType, requires_update
 
 
 class SmartLightStrip(SmartBulb):
-    """Representation of a TP-Link Smart light strip.
+    """Representation of a Aztech Smart light strip.
 
     Light strips work similarly to bulbs, but use a different service for controlling,
      and expose some extra information (such as length and active effect).
