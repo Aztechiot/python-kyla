@@ -25,7 +25,7 @@
             "deviceId": "WPE45139261CB3797CB65E40A3CCF3879D",
             "err_code": 0,
             "feature": "TIM",
-            "hwId": "92688D028799C60F926049D1C9EFD9E8",
+            "hwId": "",
             "hw_ver": "1.0",
             "icon_hash": "",
             "latitude": 63.5442,
@@ -35,11 +35,11 @@
             "longitude_i": -148.2817,
             "mac": "CE:50:E3:0D:57:D1",
             "model": "Kyla Gen 2 Smart Plug",
-            "oemId": "149C8A24AA3A1445DE84F00DFB210D60",
+            "oemId": "",
             "on_time": 0,
             "relay_state": 0,
             "rssi": -65,
-            "sw_ver": "1.2.5 Build 171129 Rel.174814",
+            "sw_ver": "",
             "type": "IOT.SMARTPLUGSWITCH",
             "updating": 0
         }

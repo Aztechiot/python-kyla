@@ -2,7 +2,7 @@
 
 ```bash
 # export PREVIOUS_RELEASE=$(git describe --abbrev=0)
-export PREVIOUS_RELEASE=0.3.5 # generate the full changelog since last pyhs100 release
+export PREVIOUS_RELEASE=0.3.5 # generate the full changelog since last pykyla release
 export NEW_RELEASE=0.4.0.pre1
 ```
 
